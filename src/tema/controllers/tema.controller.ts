@@ -11,15 +11,12 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 import { Tema } from '../entities/tema.entity';
 import { TemaService } from '../services/tema.service';
+import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 
-@ApiTags('Tema')
 @UseGuards(JwtAuthGuard)
-@Controller('/tema')
-@ApiBearerAuth()
+@Controller('/temas')
 export class TemaController {
   constructor(private readonly temaService: TemaService) {}
 
@@ -37,20 +34,20 @@ export class TemaController {
 
   @Get('/descricao/:descricao')
   @HttpCode(HttpStatus.OK)
-  findBydescricao(@Param('descricao') descricao: string): Promise<Tema[]> {
+  findByDescricao(@Param('descricao') descricao: string): Promise<Tema[]> {
     return this.temaService.findByDescricao(descricao);
   }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() Tema: Tema): Promise<Tema> {
-    return this.temaService.create(Tema);
+  create(@Body() tema: Tema): Promise<Tema> {
+    return this.temaService.create(tema);
   }
 
   @Put()
   @HttpCode(HttpStatus.OK)
-  update(@Body() Tema: Tema): Promise<Tema> {
-    return this.temaService.update(Tema);
+  update(@Body() tema: Tema): Promise<Tema> {
+    return this.temaService.update(tema);
   }
 
   @Delete('/:id')
