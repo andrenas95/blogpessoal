@@ -45,24 +45,24 @@ export class TemaService {
     });
   }
 
-  async create(tema: Tema): Promise<Tema> {
-    return await this.temaRepository.save(tema);
+  async create(Tema: Tema): Promise<Tema> {
+    return await this.temaRepository.save(Tema);
   }
 
   async update(tema: Tema): Promise<Tema> {
-    const buscaTema: Tema = await this.findById(tema.id);
+    const buscaTema = await this.findById(tema.id);
 
     if (!buscaTema || !tema.id)
-      throw new HttpException('Tema não foi encontrado!', HttpStatus.NOT_FOUND);
+      throw new HttpException('Tema não encontrado!', HttpStatus.NOT_FOUND);
 
     return await this.temaRepository.save(tema);
   }
 
   async delete(id: number): Promise<DeleteResult> {
-    const buscaTema: Tema = await this.findById(id);
+    const buscaTema = await this.findById(id);
 
     if (!buscaTema)
-      throw new HttpException('Tema não foi encontrado!', HttpStatus.NOT_FOUND);
+      throw new HttpException('Tema não encontrado!', HttpStatus.NOT_FOUND);
 
     return await this.temaRepository.delete(id);
   }

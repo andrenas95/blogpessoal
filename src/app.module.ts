@@ -7,6 +7,7 @@ import { ProdService } from './data/services/prod.service';
 import { PostagemModule } from './postagem/postagem.module';
 import { TemaModule } from './tema/tema.module';
 import { UsuarioModule } from './usuario/usuario.module';
+import { DevService } from './data/services/dev.service';
 
 @Module({
   imports: [
