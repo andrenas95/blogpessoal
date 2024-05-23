@@ -16,10 +16,6 @@ export class Postagem {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 5000 })
-  @ApiProperty()
-  public foto: string;
-
   @ApiProperty()
   @IsNotEmpty()
   @Column({ length: 100, nullable: false })
